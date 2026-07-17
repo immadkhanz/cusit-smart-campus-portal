@@ -1,0 +1,706 @@
+/* ═══════════════════════════════════════════════
+   CUSIT Smart Campus Portal — Premium Dashboard CSS
+   Theme: Midnight Teal & Gold
+   ═══════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://unpkg.com/aos@2.3.4/dist/aos.css');
+
+:root {
+    /* ── Base ── */
+    --bg-dark: #0a1628;
+    --bg-surface: #101d34;
+    --sidebar-bg: rgba(10, 22, 40, 0.92);
+    --card-bg: rgba(16, 32, 56, 0.55);
+    --card-hover: rgba(20, 40, 70, 0.75);
+    --border-color: rgba(6, 214, 160, 0.08);
+    --border-hover: rgba(6, 214, 160, 0.3);
+
+    /* ── Accent Colors ── */
+    --primary: #06d6a0;          /* Electric Teal */
+    --primary-glow: rgba(6, 214, 160, 0.3);
+    --accent: #fbbf24;           /* Warm Gold */
+    --accent-glow: rgba(251, 191, 36, 0.25);
+    --success: #34d399;          /* Emerald */
+    --warning: #fbbf24;          /* Amber Gold */
+    --danger: #fb7185;           /* Rose */
+    --info: #38bdf8;             /* Sky Blue */
+
+    /* ── Text ── */
+    --text-main: #e2e8f0;
+    --text-muted: #7c8db5;
+    --text-secondary: #94a3b8;
+
+    /* ── Shape ── */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+    /* ── Background: Soft cool-gray workspace ── */
+    --bg-dark: #eef2f7;
+    --bg-surface: #e2e8f0;
+
+    /* ── Sidebar stays DARK for maximum contrast ── */
+    --sidebar-bg: #0f1d32;
+
+    /* ── Cards: Crisp white with deep shadows ── */
+    --card-bg: #ffffff;
+    --card-hover: #f8fafc;
+    --border-color: rgba(15, 23, 42, 0.10);
+    --border-hover: rgba(6, 214, 160, 0.5);
+
+    /* ── Deep ink text ── */
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --text-secondary: #334155;
+
+    /* ── Accents stay the same (Teal & Gold) ── */
+    --primary-glow: rgba(6, 214, 160, 0.25);
+    --accent-glow: rgba(251, 191, 36, 0.2);
+}
+
+/* ── Light Theme: Deep shadow & contrast overrides ── */
+[data-theme="light"] body::before {
+    background:
+        radial-gradient(ellipse at 15% 20%, rgba(6, 214, 160, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 80%, rgba(251, 191, 36, 0.03) 0%, transparent 50%);
+}
+
+/* Sidebar keeps dark theme styling in light mode */
+[data-theme="light"] .sidebar {
+    background: #0f1d32;
+    border-right: 1px solid rgba(6, 214, 160, 0.08);
+}
+[data-theme="light"] .nav-item a {
+    color: #94a3b8;
+}
+[data-theme="light"] .nav-item a:hover {
+    background: rgba(6, 214, 160, 0.08);
+    color: #06d6a0;
+}
+[data-theme="light"] .nav-item a.active {
+    background: rgba(6, 214, 160, 0.1);
+    color: #06d6a0;
+}
+[data-theme="light"] .logout-btn {
+    background: rgba(251, 113, 133, 0.08);
+    color: #fb7185;
+}
+[data-theme="light"] #themeToggle {
+    background: rgba(255,255,255,0.06) !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Page header gradient — dark text in light mode */
+[data-theme="light"] .page-header h1 {
+    background: linear-gradient(135deg, #0f172a 40%, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Cards get rich, lifted shadows */
+[data-theme="light"] .stat-card {
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
+    backdrop-filter: none;
+}
+[data-theme="light"] .stat-card:hover {
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10), 0 0 0 1px rgba(6, 214, 160, 0.15);
+    transform: translateY(-4px);
+}
+[data-theme="light"] .content-card {
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 4px 12px rgba(15, 23, 42, 0.03);
+    backdrop-filter: none;
+}
+[data-theme="light"] .content-card:hover {
+    border-color: rgba(6, 214, 160, 0.2);
+}
+
+/* User profile chip */
+[data-theme="light"] .user-profile {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+    backdrop-filter: none;
+}
+
+/* Data tables */
+[data-theme="light"] .data-table tbody tr:hover {
+    background: rgba(6, 214, 160, 0.05) !important;
+}
+
+/* Form controls get a deep slate background */
+[data-theme="light"] .form-control,
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="email"],
+[data-theme="light"] input[type="password"],
+[data-theme="light"] input[type="date"],
+[data-theme="light"] input[type="number"],
+[data-theme="light"] input[type="time"],
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+    background: #f1f5f9 !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    color: #0f172a !important;
+}
+[data-theme="light"] .form-control:focus,
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+    border-color: rgba(6, 214, 160, 0.5) !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1), 0 0 15px rgba(6, 214, 160, 0.05) !important;
+}
+
+/* Scrollbar light mode */
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(15, 23, 42, 0.15);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(15, 23, 42, 0.25);
+}
+
+/* Badges stay vibrant */
+[data-theme="light"] .badge-pending { background: rgba(251, 191, 36, 0.12); }
+[data-theme="light"] .badge-success { background: rgba(52, 211, 153, 0.12); }
+[data-theme="light"] .badge-danger  { background: rgba(251, 113, 133, 0.12); }
+
+/* Focus glow lighter */
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+    box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1), 0 0 15px rgba(6, 214, 160, 0.04) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   AGGRESSIVE LIGHT-MODE OVERRIDES
+   Catches ALL hardcoded inline dark-theme colors
+   ═══════════════════════════════════════════════ */
+
+/* Force dark text on ALL main-content elements */
+[data-theme="light"] .main-content,
+[data-theme="light"] .main-content div,
+[data-theme="light"] .main-content span,
+[data-theme="light"] .main-content p,
+[data-theme="light"] .main-content td,
+[data-theme="light"] .main-content th,
+[data-theme="light"] .main-content label,
+[data-theme="light"] .main-content h1,
+[data-theme="light"] .main-content h2,
+[data-theme="light"] .main-content h3,
+[data-theme="light"] .main-content h4 {
+    color: #0f172a;
+}
+
+/* Preserve accent colors on specific items */
+[data-theme="light"] .main-content .stat-value,
+[data-theme="light"] .main-content [style*="color: var(--primary)"],
+[data-theme="light"] .main-content [style*="color: var(--accent)"],
+[data-theme="light"] .main-content [style*="color: var(--info)"],
+[data-theme="light"] .main-content [style*="color: var(--danger)"],
+[data-theme="light"] .main-content [style*="color: var(--success)"],
+[data-theme="light"] .main-content [style*="color:#06d6a0"],
+[data-theme="light"] .main-content [style*="color:#fbbf24"],
+[data-theme="light"] .main-content [style*="color:#fb7185"],
+[data-theme="light"] .main-content [style*="color:#38bdf8"],
+[data-theme="light"] .main-content [style*="color:#a78bfa"] {
+    color: inherit;
+}
+
+/* Muted text stays medium-gray, not invisible */
+[data-theme="light"] .main-content [style*="color:var(--text-muted)"],
+[data-theme="light"] .stat-title {
+    color: #475569 !important;
+}
+
+/* Kill all dark semi-transparent backgrounds on cards/rows */
+[data-theme="light"] .main-content [style*="background:rgba(6,214,160,0.0"],
+[data-theme="light"] .main-content [style*="background: rgba(6,214,160,0.0"],
+[data-theme="light"] .main-content [style*="background:rgba(10,22,40"],
+[data-theme="light"] .main-content [style*="background: rgba(10,22,40"] {
+    background: rgba(6, 214, 160, 0.04) !important;
+}
+
+/* Quick-action link cards — stronger bg in light mode */
+[data-theme="light"] .main-content a[style*="background:rgba(6,214,160,0.06)"],
+[data-theme="light"] .main-content a[style*="background:rgba(56,189,248,0.06)"],
+[data-theme="light"] .main-content a[style*="background:rgba(139,92,246,0.06)"],
+[data-theme="light"] .main-content a[style*="background:rgba(251,191,36,0.06)"] {
+    background: #f1f5f9 !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Form controls in main content — deep slate bg with dark text */
+[data-theme="light"] .main-content select,
+[data-theme="light"] .main-content input,
+[data-theme="light"] .main-content textarea {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    color-scheme: light !important;
+}
+
+/* Attendance radio buttons — stronger visible styling */
+[data-theme="light"] .r-present {
+    background: rgba(6, 214, 160, 0.12) !important;
+    color: #059669 !important;
+    border-color: rgba(6, 214, 160, 0.3) !important;
+}
+[data-theme="light"] .r-absent {
+    background: rgba(251, 113, 133, 0.12) !important;
+    color: #e11d48 !important;
+    border-color: rgba(251, 113, 133, 0.3) !important;
+}
+
+/* Quick buttons in attendance */
+[data-theme="light"] .quick-btn {
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+}
+[data-theme="light"] .quick-btn:hover {
+    border-color: #06d6a0 !important;
+    color: #059669 !important;
+    background: rgba(6, 214, 160, 0.06) !important;
+}
+
+/* Attendance row cards */
+[data-theme="light"] .att-row {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+}
+[data-theme="light"] .att-row:hover {
+    background: #f8fafc !important;
+}
+
+/* Attendance overview cards (student) */
+[data-theme="light"] .att-card {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+[data-theme="light"] .att-card:hover {
+    background: #f8fafc !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* Attendance bar track */
+[data-theme="light"] .att-bar {
+    background: rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Status dots keep their colors */
+[data-theme="light"] .dot-present { background: #06d6a0 !important; }
+[data-theme="light"] .dot-absent { background: #fb7185 !important; }
+
+/* Error/Success messages */
+[data-theme="light"] .main-content [style*="background:rgba(16,185,129,0.1)"],
+[data-theme="light"] .main-content [style*="background:rgba(239,68,68,0.1)"] {
+    border-width: 1px !important;
+}
+
+/* Event cards in student view */
+[data-theme="light"] .main-content .btn-register,
+[data-theme="light"] .main-content button[type="submit"] {
+    color: #0a1628;
+}
+
+/* Brand text in sidebar stays gradient (not affected by main-content rule) */
+[data-theme="light"] .brand {
+    background: linear-gradient(135deg, #06d6a0, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(6, 214, 160, 0.2);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(6, 214, 160, 0.4); }
+
+/* ── Custom Cursor ── */
+.custom-cursor {
+    width: 32px; height: 32px;
+    border: 1.5px solid rgba(6, 214, 160, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    mix-blend-mode: difference;
+    display: none;
+}
+.cursor-dot {
+    width: 5px; height: 5px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.custom-cursor.hover {
+    width: 50px; height: 50px;
+    background: rgba(6, 214, 160, 0.08);
+    border-color: rgba(6, 214, 160, 0.6);
+}
+@media (hover: hover) and (pointer: fine) {
+    body { cursor: none !important; }
+    body * { cursor: none !important; }
+    .custom-cursor, .cursor-dot { display: block; }
+}
+
+/* ── Ambient Background Glow ── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 15% 20%, rgba(6, 214, 160, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
+}
+
+/* ── Layout ── */
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(6, 214, 160, 0.06);
+    padding: 2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 50;
+    transition: var(--transition);
+}
+
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 0.3rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    font-size: 0.88rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-item a:hover {
+    background: rgba(6, 214, 160, 0.08);
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.nav-item a.active {
+    background: rgba(6, 214, 160, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--primary);
+}
+
+.logout-btn {
+    margin-top: auto;
+    padding: 0.8rem 1rem;
+    background: rgba(251, 113, 133, 0.06);
+    color: var(--danger);
+    text-align: center;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.88rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+.logout-btn:hover {
+    background: rgba(251, 113, 133, 0.12);
+    border-color: rgba(251, 113, 133, 0.15);
+}
+
+/* ── Main Content ── */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2.5rem 3rem;
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #e2e8f0 40%, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+}
+
+/* ── Stats Grid ── */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.8rem 1.5rem;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(6, 214, 160, 0.08);
+    border-color: var(--border-hover);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.stat-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+}
+
+.stat-value {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text-main);
+}
+
+/* ── Content Grid ── */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.content-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    backdrop-filter: blur(10px);
+    transition: border-color var(--transition);
+}
+.content-card:hover { border-color: rgba(6, 214, 160, 0.12); }
+
+.card-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #0ea5e9);
+    border: none;
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius-sm);
+    color: #0a1628;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 0.88rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--primary-glow);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* ── Data Table ── */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th, .data-table td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.data-table th {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.data-table tbody tr {
+    transition: background var(--transition);
+}
+.data-table tbody tr:hover {
+    background: rgba(6, 214, 160, 0.04) !important;
+}
+
+/* ── Badges ── */
+.badge {
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.badge-pending { background: rgba(251, 191, 36, 0.1); color: var(--accent); border: 1px solid rgba(251, 191, 36, 0.2); }
+.badge-success { background: rgba(52, 211, 153, 0.1); color: var(--success); border: 1px solid rgba(52, 211, 153, 0.2); }
+.badge-danger  { background: rgba(251, 113, 133, 0.1); color: var(--danger); border: 1px solid rgba(251, 113, 133, 0.2); }
+
+/* ── Floating Animation ── */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.float { animation: float 4s ease-in-out infinite; }
+
+/* ── Page Load Fade ── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.main-content {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ── Glow Effect on Focus ── */
+input:focus, textarea:focus, select:focus {
+    box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.12), 0 0 20px rgba(6, 214, 160, 0.06) !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .content-grid { grid-template-columns: 1fr; }
+    .main-content { padding: 2rem; }
+}
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 100;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .main-content { margin-left: 0; padding: 1.5rem; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .page-header h1 { font-size: 1.4rem; }
+}
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+}
