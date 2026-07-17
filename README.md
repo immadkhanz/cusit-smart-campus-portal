@@ -24,12 +24,5 @@ A comprehensive, full-stack university management system built to bridge the gap
 - **Database:** MySQL (Relational schema with triggers and cascading keys)
 - **Security:** Password Hashing, Prepared Statements, Session Fixation Prevention
 
-## 🚀 Setup Instructions
-
-1. Clone the repository.
-2. Import the `database/schema.sql` into your MySQL database (or run `setup.php`).
-3. Update `config/db.php` with your local database credentials.
-4. Launch the project via a local server (e.g., XAMPP, WAMP, or Docker).
-
 ---
 *Developed as part of the Web Engineering Final Lab Project.*
