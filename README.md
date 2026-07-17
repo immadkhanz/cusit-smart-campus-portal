@@ -31,9 +31,5 @@ A comprehensive, full-stack university management system built to bridge the gap
 3. Update `config/db.php` with your local database credentials.
 4. Launch the project via a local server (e.g., XAMPP, WAMP, or Docker).
 
-## 📸 Screenshots
-
-*(Add screenshots of your Admin and Student dashboards here to showcase the UI)*
-
 ---
 *Developed as part of the Web Engineering Final Lab Project.*
